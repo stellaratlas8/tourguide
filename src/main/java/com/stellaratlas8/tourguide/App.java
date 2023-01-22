@@ -13,6 +13,7 @@ public class App {
     Area selectedArea;
     ArrayList<TouristSpot> destinations = new ArrayList<>();
     Hotel hotel;
+    Hotel.Suite suite;
     int lengthOfStay = 0;
     double cost;
 
@@ -36,30 +37,12 @@ public class App {
             }
         }
 
-        // Location selection
-        boolean selecting = true;
-        while (selecting) {
-            clear();
-            println("These are the top destinations in the area.\n");
-            for (TouristSpot spot : selectedArea.spots) {
-                printf("\t%s\n\n%s\n", spot.name, spot.description);
-            }
-            print("\n : ");
-            String input = scan.nextLine().toLowerCase();
-            for (TouristSpot spot : selectedArea.spots) {
-                if (spot.name.toLowerCase().equals(input)) {
-                    destinations.add(spot);
-                    selecting = false;
-                    break;
-                }
-            }
-        }
-
+        // Lodging
         while (hotel == null) {
             clear();
             println("These are the hotels in the area.\n");
             for (Hotel hotel : selectedArea.hotels) {
-                printf("\t%s\n\n%s\n", hotel.name, hotel.description);
+                printf("\t%s\n", hotel.name);
             }
             print("\n : ");
             String input = scan.nextLine().toLowerCase();
@@ -69,12 +52,35 @@ public class App {
                     break;
                 }
             }
-            if (hotel != null) {
-                printf("\t%s\n%s\n\nRates: %.2f/day\nWould you like to pick another hotel?\n : ", hotel.name,
-                        hotel.description, hotel.rates);
+            if (hotel == null)
+                continue;
+
+            while (suite == null) {
+                clear();
+                printf("\t%s\n%s\n\n", hotel.name, hotel.description);
+                println("These are the available suites for the selected hotel.\n");
+                for (Hotel.Suite suite : hotel.suites) {
+                    printf("\t%s\n%s\n\n", suite.name, suite.description);
+                }
+                print("Would you like to pick another hotel?.\n\nYes, No : ");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
                     hotel = null;
+                    break;
+                }
+
+                clear();
+                println("Please select a suite below\n");
+                for (Hotel.Suite suite : hotel.suites) {
+                    printf("\t%s\n%s\n%.2f\n", suite.name, suite.description, suite.rates);
+                }
+                print(" : ");
+                input = scan.nextLine().toLowerCase();
+                for (Hotel.Suite suite : hotel.suites) {
+                    if (suite.name.toLowerCase().equals(input)) {
+                        this.suite = suite;
+                        break;
+                    }
                 }
             }
         }
@@ -84,15 +90,49 @@ public class App {
             println("For how long? (in days)\n");
             print(" : ");
             String input = scan.nextLine();
+            // Checking for undesired characters and parsing it after to avoids checking for
+            // errors
             if (!input.matches("^[0-9]*$"))
                 continue;
             lengthOfStay = Integer.parseInt(input);
-            cost += lengthOfStay * hotel.rates;
+            cost += lengthOfStay * suite.rates;
+        }
+
+        // Location selection
+        boolean selecting = true;
+        while (selecting) {
+            clear();
+            println("These are the top destinations in the area.\n");
+            for (TouristSpot spot : selectedArea.spots) {
+                if (!destinations.contains(spot))
+                    printf("\t%s\n%s\n\n", spot.name, spot.description);
+            }
+            print(" : ");
+            String input = scan.nextLine().toLowerCase();
+            for (TouristSpot spot : selectedArea.spots) {
+                if (spot.name.toLowerCase().equals(input)) {
+                    destinations.add(spot);
+                    selecting = false;
+                    break;
+                }
+            }
+            if (selecting == false && destinations.size() < selectedArea.spots.length) {
+                print("Would you like to go to another location?.\n\nYes, No : ");
+                input = scan.nextLine().toLowerCase();
+                if (input.equals("yes")) {
+                    selecting = true;
+                }
+            }
         }
 
         clear();
+        println("Destinations");
+        for (TouristSpot touristSpot : destinations) {
+            printf("%s ", touristSpot.name);
+        }
+        printf("\nLodging :\t%s\n", hotel.name);
         println("The costs for this trip will be");
-        printf("Lodging : %.2f\n", cost);
+        printf("Lodging :\t%.2f\n", cost);
     }
 
     public static void main(String[] args) {
