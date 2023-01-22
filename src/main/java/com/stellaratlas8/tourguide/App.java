@@ -22,11 +22,15 @@ public class App {
         // Opening screen
         while (selectedArea == null) {
             clear();
+            println("########################################");
             println("Welcome to the tour guide planning program!");
-            println("To begin, please select an area by typing the name of the area below\nAreas\n");
+            println("To begin, please select an area by typing the name of the area below");
+            println("----------------------------------------");
+            println("Areas\n");
             for (Area area : Areas.areas) {
-                printf("%s\n", area.name);
+                printf("\t%s\n", area.name);
             }
+            println("########################################");
             print("\n : ");
             String input = scan.nextLine().toLowerCase();
             for (Area area : Areas.areas) {
@@ -40,10 +44,13 @@ public class App {
         // Lodging
         while (hotel == null) {
             clear();
-            println("These are the hotels in the area.\n");
+            println("########################################");
+            println("These are the hotels in the area.");
+            println("----------------------------------------");
             for (Hotel hotel : selectedArea.hotels) {
                 printf("\t%s\n", hotel.name);
             }
+            println("########################################");
             print("\n : ");
             String input = scan.nextLine().toLowerCase();
             for (Hotel hotel : selectedArea.hotels) {
@@ -57,11 +64,14 @@ public class App {
 
             while (suite == null) {
                 clear();
-                printf("\t%s\n%s\n\n", hotel.name, hotel.description);
+                println("########################################");
+                printf("\t%s\n%s\n", hotel.name, hotel.description);
+                println("----------------------------------------");
                 println("These are the available suites for the selected hotel.\n");
                 for (Hotel.Suite suite : hotel.suites) {
-                    printf("\t%s\n%s\n\n", suite.name, suite.description);
+                    printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
                 }
+                println("########################################");
                 print("Would you like to pick another hotel?.\n\nYes, No : ");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
@@ -70,11 +80,14 @@ public class App {
                 }
 
                 clear();
-                println("Please select a suite below\n");
+                println("########################################");
+                println("Please select a suite below");
+                println("----------------------------------------");
                 for (Hotel.Suite suite : hotel.suites) {
-                    printf("\t%s\n%s\n%.2f\n", suite.name, suite.description, suite.rates);
+                    printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
                 }
-                print(" : ");
+                println("########################################");
+                print("\n : ");
                 input = scan.nextLine().toLowerCase();
                 for (Hotel.Suite suite : hotel.suites) {
                     if (suite.name.toLowerCase().equals(input)) {
@@ -87,10 +100,11 @@ public class App {
 
         while (lengthOfStay == 0) {
             clear();
-            println("For how long? (in days)\n");
+            println("########################################");
+            println("For how long? (in days)");
             print(" : ");
             String input = scan.nextLine();
-            // Checking for undesired characters and parsing it after to avoids checking for
+            // Checking for undesired characters and parsing it after to avoid checking for
             // errors
             if (!input.matches("^[0-9]*$"))
                 continue;
@@ -102,12 +116,15 @@ public class App {
         boolean selecting = true;
         while (selecting) {
             clear();
-            println("These are the top destinations in the area.\n");
+            println("########################################");
+            println("These are the top destinations in the area.");
+            println("----------------------------------------");
             for (TouristSpot spot : selectedArea.spots) {
                 if (!destinations.contains(spot))
                     printf("\t%s\n%s\n\n", spot.name, spot.description);
             }
-            print(" : ");
+            println("########################################");
+            print("\n : ");
             String input = scan.nextLine().toLowerCase();
             for (TouristSpot spot : selectedArea.spots) {
                 if (spot.name.toLowerCase().equals(input)) {
@@ -126,13 +143,16 @@ public class App {
         }
 
         clear();
-        println("Destinations");
+        println("########################################");
+        print("Trips");
         for (TouristSpot touristSpot : destinations) {
-            printf("%s ", touristSpot.name);
+            printf("\n\t%s", touristSpot.name);
         }
+
         printf("\nLodging :\t%s\n", hotel.name);
+        println("########################################");
         println("The costs for this trip will be");
-        printf("Lodging :\t%.2f\n", cost);
+        printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
     }
 
     public static void main(String[] args) {
