@@ -1,4 +1,4 @@
-package tourguide;
+package com.stellaratlas8.tourguide;
 
 public class Hotel {
     String name, description;

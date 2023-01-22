@@ -1,4 +1,4 @@
-package tourguide;
+package com.stellaratlas8.tourguide;
 
 public class Area {
     String name;

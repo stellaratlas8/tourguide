@@ -30,7 +30,7 @@
             </execution>
           </executions>
           <configuration>
-            <mainClass>tourguide.App</mainClass>
+            <mainClass>com.tourguide.App</mainClass>
           </configuration>
         </plugin>
         <plugin>
@@ -39,7 +39,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>tourguide.App</mainClass>
+                <mainClass>com.tourguide.App</mainClass>
               </manifest>
             </archive>
           </configuration>
