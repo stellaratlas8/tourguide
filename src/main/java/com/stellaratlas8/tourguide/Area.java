@@ -5,17 +5,17 @@ public class Area {
     TouristSpot[] spots;
     Hotel[] hotels;
 
-    public Area(String name){
+    public Area(String name) {
         this.name = name;
     }
 
-    public Area spots(TouristSpot... spots){
+    public Area spots(TouristSpot... spots) {
         this.spots = spots;
 
         return this;
     }
 
-    public Area hotels(Hotel... hotels){
+    public Area hotels(Hotel... hotels) {
         this.hotels = hotels;
 
         return this;

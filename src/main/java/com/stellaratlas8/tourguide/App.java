@@ -19,7 +19,7 @@ public class App {
     public void run() {
         // Decided to use the names for input instead
         // Opening screen
-        while(selectedArea == null){
+        while (selectedArea == null) {
             clear();
             println("Welcome to the tour guide planning program!");
             println("To begin, please select an area by typing the name of the area below\nAreas\n");
@@ -38,7 +38,7 @@ public class App {
 
         // Location selection
         boolean selecting = true;
-        while(selecting){
+        while (selecting) {
             clear();
             println("These are the top destinations in the area.\n");
             for (TouristSpot spot : selectedArea.spots) {
@@ -55,7 +55,7 @@ public class App {
             }
         }
 
-        while(hotel == null){
+        while (hotel == null) {
             clear();
             println("These are the hotels in the area.\n");
             for (Hotel hotel : selectedArea.hotels) {
@@ -69,21 +69,23 @@ public class App {
                     break;
                 }
             }
-            if(hotel != null){
-                printf("\t%s\n%s\n\nRates: %.2f/day\nWould you like to pick another hotel?\n : ", hotel.name, hotel.description, hotel.rates);
+            if (hotel != null) {
+                printf("\t%s\n%s\n\nRates: %.2f/day\nWould you like to pick another hotel?\n : ", hotel.name,
+                        hotel.description, hotel.rates);
                 input = scan.nextLine().toLowerCase();
-                if(input.equals("yes")){
+                if (input.equals("yes")) {
                     hotel = null;
                 }
             }
         }
-        
-        while(lengthOfStay == 0){
+
+        while (lengthOfStay == 0) {
             clear();
             println("For how long? (in days)\n");
             print(" : ");
             String input = scan.nextLine();
-            if(!input.matches("^[0-9]*$")) continue;
+            if (!input.matches("^[0-9]*$"))
+                continue;
             lengthOfStay = Integer.parseInt(input);
             cost += lengthOfStay * hotel.rates;
         }
