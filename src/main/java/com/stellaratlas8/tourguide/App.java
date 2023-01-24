@@ -13,20 +13,59 @@ public class App {
     Area selectedArea;
     Hotel hotel;
     Hotel.Suite suite;
-    int lengthOfStay = 0;
+    int lengthOfStay;
     ArrayList<TouristSpot> destinations = new ArrayList<>();
-    double cost;
+    double cost = 0;
 
     public void run() {
         // Decided to use the names for input instead
-        // Opening screen
+        do {
+            // Opening screen
+            welcomeScreen();
+
+            // Area select
+            promptArea();
+            promptPreview();
+
+            // Lodging
+            promptLodging();
+            promptPreview();
+
+            // Location selection
+            promptDestinations();
+            promptPreview();
+
+            // End
+            printState();
+
+            print("Would you like to go back to the start of the program?\nYes, No : ");
+        } while (scan.nextLine().toLowerCase().equals("yes")); // Probably shouldn't do this but it looks clean
+        println("Program Ended");
+    }
+
+    public void welcomeScreen() {
+        clear();
+        println("########################################");
+        println("Welcome to the tour planning program!");
+        println("----------------------------------------");
+        println("Instructions");
+        println("\tType the options in the input area and press enter");
+        println("\tYou can choose to preview the trip after every entry");
+        println("\tThe prompt will repeat if the input is invalid!");
+        println("\tYou can type anything or just press enter for 'No'");
+        println("\tRead Carefully!");
+        println("########################################");
+        print("Press enter to continue... ");
+        scan.nextLine();
+    }
+
+    public void promptArea() {
         while (selectedArea == null) {
             clear();
             println("########################################");
-            println("Welcome to the tour guide planning program!");
             println("To begin, please select an area by typing the name of the area below, the names can be in lowercase");
             println("----------------------------------------");
-            println("Areas\n");
+            println("Areas");
             for (Area area : Areas.areas) {
                 printf("\t%s\n", area.name);
             }
@@ -41,8 +80,9 @@ public class App {
             }
             // The loop will reset if input was not valid
         }
+    }
 
-        // Lodging
+    public void promptLodging() {
         while (hotel == null) {
             clear();
             println("########################################");
@@ -80,14 +120,15 @@ public class App {
                 println("########################################");
 
                 if (hotel.suites.length == 0) {
-                    print("The program will now return to the hotel selection menu.\n\nPress enter to proceed... ");
-
+                    println("The program will now return to the hotel selection menu.\n");
+                    print("Press enter to proceed... ");
                     scan.nextLine();
                     hotel = null;
                     break;
                 }
 
-                print("Would you like to pick another hotel?.\n\nYes, No : ");
+                println("Would you like to pick another hotel?\n");
+                print("Yes, No : ");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
                     hotel = null;
@@ -99,7 +140,11 @@ public class App {
                 println("Please select a suite below");
                 println("----------------------------------------");
                 for (Hotel.Suite suite : hotel.suites) {
-                    printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
+                    /*
+                     * Name Rates : P00.00
+                     * Description Lorem ipsum dolor sit amet
+                     */
+                    printf("\t%s\tRates :\tP%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
                 }
                 println("########################################");
                 print("\n : ");
@@ -126,8 +171,9 @@ public class App {
             lengthOfStay = Integer.parseInt(input);
             cost += lengthOfStay * suite.rates;
         }
+    }
 
-        // Location selection
+    public void promptDestinations() {
         boolean selecting = true;
         while (selecting) {
             clear();
@@ -149,26 +195,50 @@ public class App {
                 }
             }
             if (selecting == false && destinations.size() < selectedArea.spots.length) {
-                print("Would you like to go to another location?.\n\nYes, No : ");
+                println("Would you like to go to another location?.\n");
+                print("Yes, No :");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
                     selecting = true;
                 }
             }
         }
+    }
 
+    public void promptPreview() {
+        println("----------------------------------------");
+        println("Would you like to view an overview of the trip?");
+        print("Yes, No : ");
+        String input = scan.nextLine().toLowerCase();
+        if (input.equals("yes")) {
+            printState();
+        }
+        println("########################################");
+        print("Press enter to proceed... ");
+        scan.nextLine();
+    }
+
+    public void printState() {
         clear();
         println("########################################");
-        print("Trips");
-        for (TouristSpot touristSpot : destinations) {
-            printf("\n\t%s", touristSpot.name);
+        printf("Traveling in %s\n", selectedArea.name);
+        if (!destinations.isEmpty()) {
+            print("\nTrips");
+            for (TouristSpot touristSpot : destinations) {
+                printf("\n\t%s", touristSpot.name);
+            }
         }
 
-        printf("\nLodging :\t%s\n", hotel.name);
-        println("########################################");
-        println("The costs for this trip will be");
-        if (suite != null)
-            printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
+        if (hotel != null) {
+            printf("\nLodging :\t%s from %s\n", suite.name, hotel.name);
+        }
+        if (cost > 0) {
+            println("----------------------------------------");
+            println("The costs for this trip will be");
+            if (suite != null)
+                printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
+            printf("Total :\tP%.2f", cost);
+        }
     }
 
     public static void main(String[] args) {
@@ -189,6 +259,9 @@ public class App {
         System.out.println(str);
     }
 
+    /**
+     * Clears screen and sets cursor to beginning of the window
+     */
     public static void clear() {
         System.out.print("\033[2J\033[1;1H");
     }
