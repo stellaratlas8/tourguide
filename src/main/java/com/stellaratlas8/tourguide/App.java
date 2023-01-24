@@ -50,7 +50,8 @@ public class App {
             print("Yes, No : ");
             reset = scan.nextLine().toLowerCase();
         } while (reset.equals("yes"));
-        println("Program Ended");
+
+        println("\nProgram Finished");
     }
 
     public void welcomeScreen() {
@@ -205,7 +206,7 @@ public class App {
             }
             if (selecting == false && destinations.size() < selectedArea.spots.length) {
                 println("Would you like to go to another location?.\n");
-                print("Yes, No :");
+                print("Yes, No : ");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
                     selecting = true;
@@ -215,7 +216,7 @@ public class App {
     }
 
     public void promptTourGuide() {
-        while(tourGuide == null) {
+        while (tourGuide == null) {
             clear();
             println("########################################");
             println("Here are the tour guides in the area");
@@ -263,6 +264,9 @@ public class App {
         if (hotel != null) {
             printf("\nLodging :\t%s from %s\n", offer.name, hotel.name);
         }
+        if (tourGuide != null)
+            printf("Tour Guide :\t%s\n", tourGuide.name);
+
         if (cost > 0) {
             println("----------------------------------------");
             println("The costs for this trip will be");
@@ -270,7 +274,8 @@ public class App {
                 printf("Lodging :\tP%.2f\n", offer.rates * lengthOfStay);
             if (tourGuide != null)
                 printf("Tour Guide :\tP%.2f\n", tourGuide.fee);
-            printf("Total :\tP%.2f\n", cost);
+
+            printf("Total :\t\tP%.2f\n", cost);
         }
     }
 
@@ -293,7 +298,8 @@ public class App {
     }
 
     /**
-     * Clears screen and sets cursor to beginning of the window, very basic. Output ideally should not exceed window size.
+     * Clears screen and sets cursor to beginning of the window, very basic. Output
+     * ideally should not exceed window size.
      */
     public static void clear() {
         System.out.print("\033[2J\033[1;1H");

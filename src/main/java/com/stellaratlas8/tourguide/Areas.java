@@ -3,9 +3,12 @@ package com.stellaratlas8.tourguide;
 import com.stellaratlas8.tourguide.Hotel.Offer;
 
 public final class Areas {
-    // All hotel information is taken from their website and booking sites
-    // (unreliable), and in by no means accurate.
-    // Tour guide information is not real.
+    /*
+     * All hotel information is taken from their website and booking sites
+     * (unreliable), and is by no means accurate.
+     * Tour guide people do not exist.
+     * I do not want to fight with the formatter
+     */
     public static final Area[] areas = {
             new Area("San Pablo")
                     .spots(
@@ -120,8 +123,8 @@ public final class Areas {
                                             "This quadruple room has a cable TV, seating area and air conditioning. Two full beds",
                                             5036.)))
                     .tourGuides(new Area.TourGuide("Thomas Garland",
-                                    "Young tour guide with Electrifying and Pleasable personality, With years of experience in the field, amazing at planning and researching for a very successful and comfortable trip.",
-                                    11600.),
+                            "Young tour guide with Electrifying and Pleasable personality, With years of experience in the field, amazing at planning and researching for a very successful and comfortable trip.",
+                            11600.),
                             new Area.TourGuide("Sol Sy",
                                     "Very reliable and can be trusted, Years of accompanying people to varying locations and making travel plans according to weather, traffic and events.",
                                     9900.)),
