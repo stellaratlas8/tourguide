@@ -11,10 +11,10 @@ public class App {
     Scanner scan = new Scanner(System.in);
 
     Area selectedArea;
-    ArrayList<TouristSpot> destinations = new ArrayList<>();
     Hotel hotel;
     Hotel.Suite suite;
     int lengthOfStay = 0;
+    ArrayList<TouristSpot> destinations = new ArrayList<>();
     double cost;
 
     public void run() {
@@ -24,7 +24,7 @@ public class App {
             clear();
             println("########################################");
             println("Welcome to the tour guide planning program!");
-            println("To begin, please select an area by typing the name of the area below");
+            println("To begin, please select an area by typing the name of the area below, the names can be in lowercase");
             println("----------------------------------------");
             println("Areas\n");
             for (Area area : Areas.areas) {
@@ -39,13 +39,14 @@ public class App {
                     break;
                 }
             }
+            // The loop will reset if input was not valid
         }
 
         // Lodging
         while (hotel == null) {
             clear();
             println("########################################");
-            println("These are the hotels in the area.");
+            println("These are the hotels in the area. Select one to show information about them");
             println("----------------------------------------");
             for (Hotel hotel : selectedArea.hotels) {
                 printf("\t%s\n", hotel.name);
@@ -59,19 +60,33 @@ public class App {
                     break;
                 }
             }
-            if (hotel == null)
+            if (hotel == null) // Resets loop if input was not valid
                 continue;
 
+            // Suite selection
             while (suite == null) {
                 clear();
                 println("########################################");
                 printf("\t%s\n%s\n", hotel.name, hotel.description);
                 println("----------------------------------------");
-                println("These are the available suites for the selected hotel.\n");
-                for (Hotel.Suite suite : hotel.suites) {
-                    printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
+                if (hotel.suites.length != 0) {
+                    println("These are the available suites for the selected hotel.\n");
+                    for (Hotel.Suite suite : hotel.suites) {
+                        printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
+                    }
+                } else {
+                    println("There are no suites available for this hotel at this time!");
                 }
                 println("########################################");
+
+                if (hotel.suites.length == 0) {
+                    print("The program will now return to the hotel selection menu.\n\nPress enter to proceed... ");
+
+                    scan.nextLine();
+                    hotel = null;
+                    break;
+                }
+
                 print("Would you like to pick another hotel?.\n\nYes, No : ");
                 input = scan.nextLine().toLowerCase();
                 if (input.equals("yes")) {
@@ -98,7 +113,7 @@ public class App {
             }
         }
 
-        while (lengthOfStay == 0) {
+        while (lengthOfStay == 0 && suite != null) {
             clear();
             println("########################################");
             println("For how long? (in days)");
@@ -152,7 +167,8 @@ public class App {
         printf("\nLodging :\t%s\n", hotel.name);
         println("########################################");
         println("The costs for this trip will be");
-        printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
+        if (suite != null)
+            printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
     }
 
     public static void main(String[] args) {
