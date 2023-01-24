@@ -1,7 +1,8 @@
 package com.stellaratlas8.tourguide;
 
 public final class Areas {
-    public static final Area[] areas = { // All hotel information is taken from their website and booking sites (unreliable), and in by no means accurate.
+    public static final Area[] areas = { // All hotel information is taken from their website and booking sites
+                                         // (unreliable), and in by no means accurate.
             new Area("San Pablo")
                     .spots(
                             new TouristSpot("Sampaloc Lake", // https://web.archive.org/web/20220921214028/https://en.wikipedia.org/wiki/Lake_Sampaloc
@@ -204,7 +205,8 @@ public final class Areas {
                                             4550.)),
                             new Hotel("El Cielito Hotel",
                                     "The hotel is strategically located along Sta. Rosa - Tagaytay Road, City of Sta. Rosa Laguna. There are 74 functionally designed rooms suited for all clientele."),
-                            new Hotel("Madie's Place Guest House", "Strategically situated in Santa Rosa, allowing you access and proximity to local attractions and sights. Don't leave before paying a visit to the famous Rose and Grace Restaurant. Massage and restaurant are among the special facilities that will enhance your stay with on-site convenience. ",
+                            new Hotel("Madie's Place Guest House",
+                                    "Strategically situated in Santa Rosa, allowing you access and proximity to local attractions and sights. Don't leave before paying a visit to the famous Rose and Grace Restaurant. Massage and restaurant are among the special facilities that will enhance your stay with on-site convenience. ",
                                     new Hotel.Offer("Attic Room", "2 single beds", 1447.))),
             new Area("Cebu")
                     .spots(
@@ -219,23 +221,52 @@ public final class Areas {
                             new TouristSpot("Casa Gorordo Museum", // https://casagorordomuseum.org/
                                     "Casa Gorordo is a house museum located in the historic Parian area of Cebu, the oldest city in the Philippines."))
                     .hotels(
-                            new Hotel("Mad Monkey Cebu City", "Experience the best of the Queen City of the South at Mad Monkey Cebu City! Located close to the best tourist spots in the city, we offer budget-friendly private rooms and dorms with friendly staff and a buzzing social vibe.",
-                                    new Hotel.Offer("Standard Double", "This private room sleeps 2 guests in a double bed. Room has air conditioning and an ensuite bathroom with a hot shower.", 1640.),
-                                    new Hotel.Offer("Standard Triple", "This private room sleeps 3 guests in a double bed and twin bed. Room has air conditioning and an ensuite bathroom with a hot shower.", 1800.)),
-                            new Hotel("Radisson Blu Cebu", "Located in the heart of Cebu City, the Radisson Blu Cebu provides five-star accommodations just minutes from the Mactan Channel and right next to Cebu International Port. Enjoy sweeping views of the channel and the city as well as proximity to cultural attractions and beautiful white-sand beaches.",
-                                    new Hotel.Offer("Superior Room", "The perfect home base for a conference or sightseeing, our Superior Room offers you a choice of one king bed or two twin beds, plus all the amenities you need for an effortless stay.", 6580.),
-                                    new Hotel.Offer("Junior Suite", "Planning an extended stay in Cebu? More than twice the size of our Superior Rooms, these suites feature a king bed and plenty of space to relax.", 8554.),
-                                    new Hotel.Offer("Business Class Room", "Upgrade your corporate visit to Cebu City when you reserve a Business Class Room featuring your choice of a king bed or two twin beds.", 10199.)),
-                            new Hotel("Marco Polo Plaza", "Marco Polo Plaza, Cebu is home to some of the award-winning restaurants and food of Cebu. The signature buffet restaurant Cafe Marco is awarded \"Best Premium Buffet\" by Sun.Star Best of Cebu, a news and media company.",
-                                    new Hotel.Offer("Deluxe Mountain View Room", "Offer 32 sq m/345 sq ft designed to suit today's international travelers. Has view of the mountains. Can fit up to three guest.", 3257.85),
-                                    new Hotel.Offer("Deluxe Sea View Room", "Offers 32 sq m/ 345 sq ft space with a relaxing sea and city view fit for today's international traveler. Can accommodate up to three guests.", 3757.85),
-                                    new Hotel.Offer("Premier Mountain View Room", "Offers 32 sq m/345 sq ft of newly renovated space designed to fit the needs of international travelers. Can accommodate up to three guests. With built-in bidet and premium bathroom amenities.", 4557.85),
-                                    new Hotel.Offer("Premier Sea View Room", "Offers 32 sq m/345 sq ft of newly renovated space designed to fit the needs of international travelers. Can accommodate up to three guests. With built-in bidet and premium bathroom amenities.", 4757.85),
-                                    new Hotel.Offer("Deluxe Suite", "Offers 47 sq m/ 507 sq ft space with a relaxing mini living room. With a spacious bathroom with luxury amenities. Guests have access to the Continental Club Lounge with premium privileges.", 7757.85)),
-                            new Hotel("Seda Central Bloc Cebu", "Seda Central Bloc Cebu is located in the city's newest business district, Cebu I.T. Park, home to a growing BPO industry and its dynamic millennial workforce. The 17-storey hotel offers a unique combination of hotel rooms for short stays, and serviced residences with home-like conveniences for extended visits.",
-                                    new Hotel.Offer("Deluxe Room", "28 square meters, multi-purpose table, chaise lounge, and a swivel chair, King size bed or Twin beds", 7500.),
-                                    new Hotel.Offer("Studio Residence", "30 sqm, King bed, L-type sofa and coffee table, multi-purpose working/dining table, kitchenette", 9000.)),
-                            new Hotel("Red Planet Hotel", "The stylish and tech-savvy rooms at Red Planet Cebu boast free fast Wi-Fi and cloud-like beds so that you can recharge before a day of exploring the historic city.",
+                            new Hotel("Mad Monkey Cebu City",
+                                    "Experience the best of the Queen City of the South at Mad Monkey Cebu City! Located close to the best tourist spots in the city, we offer budget-friendly private rooms and dorms with friendly staff and a buzzing social vibe.",
+                                    new Hotel.Offer("Standard Double",
+                                            "This private room sleeps 2 guests in a double bed. Room has air conditioning and an ensuite bathroom with a hot shower.",
+                                            1640.),
+                                    new Hotel.Offer("Standard Triple",
+                                            "This private room sleeps 3 guests in a double bed and twin bed. Room has air conditioning and an ensuite bathroom with a hot shower.",
+                                            1800.)),
+                            new Hotel("Radisson Blu Cebu",
+                                    "Located in the heart of Cebu City, the Radisson Blu Cebu provides five-star accommodations just minutes from the Mactan Channel and right next to Cebu International Port. Enjoy sweeping views of the channel and the city as well as proximity to cultural attractions and beautiful white-sand beaches.",
+                                    new Hotel.Offer("Superior Room",
+                                            "The perfect home base for a conference or sightseeing, our Superior Room offers you a choice of one king bed or two twin beds, plus all the amenities you need for an effortless stay.",
+                                            6580.),
+                                    new Hotel.Offer("Junior Suite",
+                                            "Planning an extended stay in Cebu? More than twice the size of our Superior Rooms, these suites feature a king bed and plenty of space to relax.",
+                                            8554.),
+                                    new Hotel.Offer("Business Class Room",
+                                            "Upgrade your corporate visit to Cebu City when you reserve a Business Class Room featuring your choice of a king bed or two twin beds.",
+                                            10199.)),
+                            new Hotel("Marco Polo Plaza",
+                                    "Marco Polo Plaza, Cebu is home to some of the award-winning restaurants and food of Cebu. The signature buffet restaurant Cafe Marco is awarded \"Best Premium Buffet\" by Sun.Star Best of Cebu, a news and media company.",
+                                    new Hotel.Offer("Deluxe Mountain View Room",
+                                            "Offer 32 sq m/345 sq ft designed to suit today's international travelers. Has view of the mountains. Can fit up to three guest.",
+                                            3257.85),
+                                    new Hotel.Offer("Deluxe Sea View Room",
+                                            "Offers 32 sq m/ 345 sq ft space with a relaxing sea and city view fit for today's international traveler. Can accommodate up to three guests.",
+                                            3757.85),
+                                    new Hotel.Offer("Premier Mountain View Room",
+                                            "Offers 32 sq m/345 sq ft of newly renovated space designed to fit the needs of international travelers. Can accommodate up to three guests. With built-in bidet and premium bathroom amenities.",
+                                            4557.85),
+                                    new Hotel.Offer("Premier Sea View Room",
+                                            "Offers 32 sq m/345 sq ft of newly renovated space designed to fit the needs of international travelers. Can accommodate up to three guests. With built-in bidet and premium bathroom amenities.",
+                                            4757.85),
+                                    new Hotel.Offer("Deluxe Suite",
+                                            "Offers 47 sq m/ 507 sq ft space with a relaxing mini living room. With a spacious bathroom with luxury amenities. Guests have access to the Continental Club Lounge with premium privileges.",
+                                            7757.85)),
+                            new Hotel("Seda Central Bloc Cebu",
+                                    "Seda Central Bloc Cebu is located in the city's newest business district, Cebu I.T. Park, home to a growing BPO industry and its dynamic millennial workforce. The 17-storey hotel offers a unique combination of hotel rooms for short stays, and serviced residences with home-like conveniences for extended visits.",
+                                    new Hotel.Offer("Deluxe Room",
+                                            "28 square meters, multi-purpose table, chaise lounge, and a swivel chair, King size bed or Twin beds",
+                                            7500.),
+                                    new Hotel.Offer("Studio Residence",
+                                            "30 sqm, King bed, L-type sofa and coffee table, multi-purpose working/dining table, kitchenette",
+                                            9000.)),
+                            new Hotel("Red Planet Hotel",
+                                    "The stylish and tech-savvy rooms at Red Planet Cebu boast free fast Wi-Fi and cloud-like beds so that you can recharge before a day of exploring the historic city.",
                                     new Hotel.Offer("Double Room", "One queen-sized signature bed.", 1857.),
                                     new Hotel.Offer("Twin Room", "Two single signature beds.", 2019.)))
     };
