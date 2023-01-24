@@ -2,19 +2,19 @@ package com.stellaratlas8.tourguide;
 
 public class Hotel {
     String name, description;
-    Suite[] suites;
+    Offers[] offers;
 
-    public Hotel(String name, String description, Suite... suites) {
+    public Hotel(String name, String description, Offers... offers) {
         this.name = name;
         this.description = description;
-        this.suites = suites;
+        this.offers = offers;
     }
 
-    static public class Suite {
+    static public class Offers {
         String name, description;
         double rates;
 
-        public Suite(String name, String description, double rates) {
+        public Offers(String name, String description, double rates) {
             this.name = name;
             this.description = description;
             this.rates = rates;

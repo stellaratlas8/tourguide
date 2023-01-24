@@ -12,7 +12,7 @@ public class App {
 
     Area selectedArea;
     Hotel hotel;
-    Hotel.Suite suite;
+    Hotel.Offers offer;
     int lengthOfStay;
     ArrayList<TouristSpot> destinations = new ArrayList<>();
     double cost = 0;
@@ -103,23 +103,23 @@ public class App {
             if (hotel == null) // Resets loop if input was not valid
                 continue;
 
-            // Suite selection
-            while (suite == null) {
+            // Offer selection
+            while (offer == null) {
                 clear();
                 println("########################################");
                 printf("\t%s\n%s\n", hotel.name, hotel.description);
                 println("----------------------------------------");
-                if (hotel.suites.length != 0) {
-                    println("These are the available suites for the selected hotel.\n");
-                    for (Hotel.Suite suite : hotel.suites) {
-                        printf("\t%s\tRates :\t%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
+                if (hotel.offers.length != 0) {
+                    println("These are the available offers for the selected hotel.\n");
+                    for (Hotel.Offers offers : hotel.offers) {
+                        printf("\t%s\tRates :\t%.2f/day\n%s\n", offers.name, offers.rates, offers.description);
                     }
                 } else {
-                    println("There are no suites available for this hotel at this time!");
+                    println("There are no offers available for this hotel at this time!");
                 }
                 println("########################################");
 
-                if (hotel.suites.length == 0) {
+                if (hotel.offers.length == 0) {
                     println("The program will now return to the hotel selection menu.\n");
                     print("Press enter to proceed... ");
                     scan.nextLine();
@@ -137,28 +137,28 @@ public class App {
 
                 clear();
                 println("########################################");
-                println("Please select a suite below");
+                println("Please select an offer below");
                 println("----------------------------------------");
-                for (Hotel.Suite suite : hotel.suites) {
+                for (Hotel.Offers offer : hotel.offers) {
                     /*
                      * Name Rates : P00.00
                      * Description Lorem ipsum dolor sit amet
                      */
-                    printf("\t%s\tRates :\tP%.2f/day\n%s\n", suite.name, suite.rates, suite.description);
+                    printf("\t%s\tRates :\tP%.2f/day\n%s\n", offer.name, offer.rates, offer.description);
                 }
                 println("########################################");
                 print("\n : ");
                 input = scan.nextLine().toLowerCase();
-                for (Hotel.Suite suite : hotel.suites) {
-                    if (suite.name.toLowerCase().equals(input)) {
-                        this.suite = suite;
+                for (Hotel.Offers offer : hotel.offers) {
+                    if (offer.name.toLowerCase().equals(input)) {
+                        this.offer = offer;
                         break;
                     }
                 }
             }
         }
 
-        while (lengthOfStay == 0 && suite != null) {
+        while (lengthOfStay == 0 && offer != null) {
             clear();
             println("########################################");
             println("For how long? (in days)");
@@ -169,7 +169,7 @@ public class App {
             if (!input.matches("^[0-9]*$"))
                 continue;
             lengthOfStay = Integer.parseInt(input);
-            cost += lengthOfStay * suite.rates;
+            cost += lengthOfStay * offer.rates;
         }
     }
 
@@ -230,13 +230,13 @@ public class App {
         }
 
         if (hotel != null) {
-            printf("\nLodging :\t%s from %s\n", suite.name, hotel.name);
+            printf("\nLodging :\t%s from %s\n", offer.name, hotel.name);
         }
         if (cost > 0) {
             println("----------------------------------------");
             println("The costs for this trip will be");
-            if (suite != null)
-                printf("Lodging :\tP%.2f\n", suite.rates * lengthOfStay);
+            if (offer != null)
+                printf("Lodging :\tP%.2f\n", offer.rates * lengthOfStay);
             printf("Total :\tP%.2f", cost);
         }
     }
