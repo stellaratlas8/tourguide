@@ -1,8 +1,10 @@
 package com.stellaratlas8.tourguide;
 
 public final class Areas {
-    public static final Area[] areas = { // All hotel information is taken from their website and booking sites
-                                         // (unreliable), and in by no means accurate.
+    // All hotel information is taken from their website and booking sites
+    // (unreliable), and in by no means accurate.
+    // Tour guide information is not real.
+    public static final Area[] areas = {
             new Area("San Pablo")
                     .spots(
                             new TouristSpot("Sampaloc Lake", // https://web.archive.org/web/20220921214028/https://en.wikipedia.org/wiki/Lake_Sampaloc
@@ -44,7 +46,14 @@ public final class Areas {
                                             "For six guests, one bedroom and a loft with one queen sized bed, 1 single bed or three single beds.",
                                             8200.)),
                             new Hotel("Auravele Grande",
-                                    "Auravel Grande Hotel and Resort is situated at Maharlika Highway, Brgy. San Francisco, Calihan, San Pablo City, Laguna. This hotel and resort is also located near other places of interest in San Pablo City. Inquire for rates")),
+                                    "Auravel Grande Hotel and Resort is situated at Maharlika Highway, Brgy. San Francisco, Calihan, San Pablo City, Laguna. This hotel and resort is also located near other places of interest in San Pablo City. Inquire for rates"))
+                    .tourGuides(
+                            new Area.TourGuide("Randy Romualdez",
+                                    "Approachable and experienced with years of hardened experience, good at planning trips and exerts effort like no other.",
+                                    7600.),
+                            new Area.TourGuide("Ian Tan",
+                                    "Very experienced tour guide from the area, Effortlessly leading the groups and giving the greatest travel experience.",
+                                    6800.)),
             new Area("Baguio")
                     .spots(
                             new TouristSpot("Burnham Park", // https://web.archive.org/web/20220422164115/https://en.wikipedia.org/wiki/Burnham_Park_(Baguio)
@@ -107,7 +116,13 @@ public final class Areas {
                                             "This twin room features a cable TV. 2 twin bed or one queen bed", 3126.),
                                     new Hotel.Offer("Quadruple Room",
                                             "This quadruple room has a cable TV, seating area and air conditioning. Two full beds",
-                                            5036.))),
+                                            5036.)))
+                    .tourGuides(new Area.TourGuide("Thomas Garland",
+                                    "Young tour guide with Electrifying and Pleasable personality, With years of experience in the field, amazing at planning and researching for a very successful and comfortable trip.",
+                                    11600.),
+                            new Area.TourGuide("Sol Sy",
+                                    "Very reliable and can be trusted, Years of accompanying people to varying locations and making travel plans according to weather, traffic and events.",
+                                    9900.)),
             new Area("Palawan")
                     .spots(
                             new TouristSpot("Puerto Princesa Underground River", // https://web.archive.org/web/20230110070207/https://en.wikipedia.org/wiki/Puerto_Princesa_Subterranean_River_National_Park
@@ -170,7 +185,14 @@ public final class Areas {
                                             6000.),
                                     new Hotel.Offer("Family Room",
                                             "Perfectly fit for family, this non-pool view room stretches an access for solitude and seamless experience of relaxation while getting together with the family.",
-                                            8500.))),
+                                            8500.)))
+                    .tourGuides(
+                            new Area.TourGuide("Alan Jacques",
+                                    "A tour guide Passionate and Dedicated to his craft with years of experience at navigating the islands, providing the most comfortable and effortless experience.",
+                                    11000.),
+                            new Area.TourGuide("Gillian Venales",
+                                    "With years of experience in the area, Considerably great at networking, planning, research. Emphasizing the experience and rivaling the comfort of the best tour guides.",
+                                    10600.)),
             new Area("Sta Rosa")
                     .spots(
                             new TouristSpot("Fun Farm", // https://www.staelena.com/fun-farm.php
@@ -207,7 +229,14 @@ public final class Areas {
                                     "The hotel is strategically located along Sta. Rosa - Tagaytay Road, City of Sta. Rosa Laguna. There are 74 functionally designed rooms suited for all clientele."),
                             new Hotel("Madie's Place Guest House",
                                     "Strategically situated in Santa Rosa, allowing you access and proximity to local attractions and sights. Don't leave before paying a visit to the famous Rose and Grace Restaurant. Massage and restaurant are among the special facilities that will enhance your stay with on-site convenience. ",
-                                    new Hotel.Offer("Attic Room", "2 single beds", 1447.))),
+                                    new Hotel.Offer("Attic Room", "2 single beds", 1447.)))
+                    .tourGuides(
+                            new Area.TourGuide("Jack Barleta",
+                                    "Hardened from years of serving clients, consistently delivering a great experience and meticulously planned trips to various places with unrivaled knowledge of the area",
+                                    8200.),
+                            new Area.TourGuide("Haley Veronica",
+                                    "Humbly providing an unforgettable experience, creating a moment from the mundane, an enthusiastic tourguide that delivers.",
+                                    8150.)),
             new Area("Cebu")
                     .spots(
                             new TouristSpot("Magellan's Cross", // https://www.hawaii.edu/cps/magellancross.html
@@ -269,5 +298,12 @@ public final class Areas {
                                     "The stylish and tech-savvy rooms at Red Planet Cebu boast free fast Wi-Fi and cloud-like beds so that you can recharge before a day of exploring the historic city.",
                                     new Hotel.Offer("Double Room", "One queen-sized signature bed.", 1857.),
                                     new Hotel.Offer("Twin Room", "Two single signature beds.", 2019.)))
+                    .tourGuides(
+                            new Area.TourGuide("Celine Lopez",
+                                    "With years of experience in giving people smiles, priding upon an effortless and comfortable experience.",
+                                    8400.),
+                            new Area.TourGuide("Manuelito de la Cueva",
+                                    "Charismatic and enthusiastic with years of experience providing clients with a worthy experience, taking clients on a carefully researched and planned trip through many places in a good ol' fashion way.",
+                                    8250.))
     };
 }

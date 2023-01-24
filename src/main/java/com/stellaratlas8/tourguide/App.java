@@ -19,6 +19,7 @@ public class App {
 
     public void run() {
         // Decided to use the names for input instead
+        String reset;
         do {
             // Opening screen
             welcomeScreen();
@@ -38,8 +39,10 @@ public class App {
             // End
             printState();
 
-            print("Would you like to go back to the start of the program?\nYes, No : ");
-        } while (scan.nextLine().toLowerCase().equals("yes")); // Probably shouldn't do this but it looks clean
+            println("Would you like to go back to the start of the program?");
+            print("Yes, No : ");
+            reset = scan.nextLine().toLowerCase();
+        } while (reset.equals("yes"));
         println("Program Ended");
     }
 
@@ -110,7 +113,7 @@ public class App {
                 printf("\t%s\n%s\n", hotel.name, hotel.description);
                 println("----------------------------------------");
                 if (hotel.offers.length != 0) {
-                    println("These are the available offers for the selected hotel.\n");
+                    println("These are the available offerQs for the selected hotel.\n");
                     for (Hotel.Offer offers : hotel.offers) {
                         printf("\t%s\tRates :\t%.2f/day\n%s\n", offers.name, offers.rates, offers.description);
                     }
