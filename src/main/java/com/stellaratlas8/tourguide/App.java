@@ -3,6 +3,9 @@ package com.stellaratlas8.tourguide;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.stellaratlas8.tourguide.Area.TourGuide;
+import com.stellaratlas8.tourguide.Hotel.Offer;
+
 /**
  * 
  *
@@ -12,9 +15,10 @@ public class App {
 
     Area selectedArea;
     Hotel hotel;
-    Hotel.Offer offer;
+    Offer offer;
     int lengthOfStay;
     ArrayList<TouristSpot> destinations = new ArrayList<>();
+    TourGuide tourGuide;
     double cost = 0;
 
     public void run() {
@@ -35,6 +39,9 @@ public class App {
             // Location selection
             promptDestinations();
             promptPreview();
+
+            // Tour Guide Selection
+            promptTourGuide();
 
             // End
             printState();
@@ -68,7 +75,6 @@ public class App {
             println("########################################");
             println("To begin, please select an area by typing the name of the area below, the names can be in lowercase");
             println("----------------------------------------");
-            println("Areas");
             for (Area area : Areas.areas) {
                 printf("\t%s\n", area.name);
             }
@@ -113,8 +119,8 @@ public class App {
                 printf("\t%s\n%s\n", hotel.name, hotel.description);
                 println("----------------------------------------");
                 if (hotel.offers.length != 0) {
-                    println("These are the available offerQs for the selected hotel.\n");
-                    for (Hotel.Offer offers : hotel.offers) {
+                    println("These are the available offers for the selected hotel.\n");
+                    for (Offer offers : hotel.offers) {
                         printf("\t%s\tRates :\t%.2f/day\n%s\n", offers.name, offers.rates, offers.description);
                     }
                 } else {
@@ -142,7 +148,7 @@ public class App {
                 println("########################################");
                 println("Please select an offer below");
                 println("----------------------------------------");
-                for (Hotel.Offer offer : hotel.offers) {
+                for (Offer offer : hotel.offers) {
                     /*
                      * Name Rates : P00.00
                      * Description Lorem ipsum dolor sit amet
@@ -152,7 +158,7 @@ public class App {
                 println("########################################");
                 print("\n : ");
                 input = scan.nextLine().toLowerCase();
-                for (Hotel.Offer offer : hotel.offers) {
+                for (Offer offer : hotel.offers) {
                     if (offer.name.toLowerCase().equals(input)) {
                         this.offer = offer;
                         break;
@@ -208,6 +214,28 @@ public class App {
         }
     }
 
+    public void promptTourGuide() {
+        while(tourGuide == null) {
+            clear();
+            println("########################################");
+            println("Here are the tour guides in the area");
+            println("----------------------------------------");
+            for (TourGuide guide : selectedArea.tourGuides) {
+                printf("\t%s\tFee :\tP%.2f\n%s\n\n", guide.name, guide.fee, guide.description);
+            }
+            println("########################################");
+            print("\n : ");
+            String input = scan.nextLine().toLowerCase();
+            for (TourGuide guide : selectedArea.tourGuides) {
+                if (guide.name.toLowerCase().equals(input)) {
+                    tourGuide = guide;
+                    cost += guide.fee;
+                    break;
+                }
+            }
+        }
+    }
+
     public void promptPreview() {
         println("----------------------------------------");
         println("Would you like to view an overview of the trip?");
@@ -240,7 +268,9 @@ public class App {
             println("The costs for this trip will be");
             if (offer != null)
                 printf("Lodging :\tP%.2f\n", offer.rates * lengthOfStay);
-            printf("Total :\tP%.2f", cost);
+            if (tourGuide != null)
+                printf("Tour Guide :\tP%.2f\n", tourGuide.fee);
+            printf("Total :\tP%.2f\n", cost);
         }
     }
 
@@ -263,7 +293,7 @@ public class App {
     }
 
     /**
-     * Clears screen and sets cursor to beginning of the window
+     * Clears screen and sets cursor to beginning of the window, very basic. Output ideally should not exceed window size.
      */
     public static void clear() {
         System.out.print("\033[2J\033[1;1H");
