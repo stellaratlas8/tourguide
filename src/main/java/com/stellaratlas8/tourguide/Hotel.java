@@ -10,7 +10,7 @@ public class Hotel {
         this.offers = offers;
     }
 
-    static public class Offer {
+    public static class Offer {
         String name, description;
         double rates;
 
