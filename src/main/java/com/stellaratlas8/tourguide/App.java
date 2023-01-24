@@ -12,7 +12,7 @@ public class App {
 
     Area selectedArea;
     Hotel hotel;
-    Hotel.Offers offer;
+    Hotel.Offer offer;
     int lengthOfStay;
     ArrayList<TouristSpot> destinations = new ArrayList<>();
     double cost = 0;
@@ -111,7 +111,7 @@ public class App {
                 println("----------------------------------------");
                 if (hotel.offers.length != 0) {
                     println("These are the available offers for the selected hotel.\n");
-                    for (Hotel.Offers offers : hotel.offers) {
+                    for (Hotel.Offer offers : hotel.offers) {
                         printf("\t%s\tRates :\t%.2f/day\n%s\n", offers.name, offers.rates, offers.description);
                     }
                 } else {
@@ -139,7 +139,7 @@ public class App {
                 println("########################################");
                 println("Please select an offer below");
                 println("----------------------------------------");
-                for (Hotel.Offers offer : hotel.offers) {
+                for (Hotel.Offer offer : hotel.offers) {
                     /*
                      * Name Rates : P00.00
                      * Description Lorem ipsum dolor sit amet
@@ -149,7 +149,7 @@ public class App {
                 println("########################################");
                 print("\n : ");
                 input = scan.nextLine().toLowerCase();
-                for (Hotel.Offers offer : hotel.offers) {
+                for (Hotel.Offer offer : hotel.offers) {
                     if (offer.name.toLowerCase().equals(input)) {
                         this.offer = offer;
                         break;
